@@ -1,0 +1,89 @@
+<%- include("header") -%>
+
+<div class="wrapper">
+  <div class="section1">
+    <div class="section logoDate">
+      <div class="logo">
+        <i class="far fa-check-circle"></i>
+        <h2>taskList</h2>
+      </div>
+
+      <div class="date"><%= listTitle %></div>
+    </div>
+
+    <div class="section">
+      <div class="feature">Bonus Feature!</div>
+      <div class="featureText">
+        You can access a new to-do list by following this steps:
+      </div>
+      <ul class="steps">
+        <ol>
+          <span class="number">1</span>
+          Check the URL of this page
+        </ol>
+        <ol>
+          <span class="number">2</span>
+          Add your new to-do list name like so:
+          <div class="url">
+            ...herokuapp.com/<span class="urlName">work</span>
+          </div>
+        </ol>
+        <ol>
+          <span class="number">3</span
+          >Save it in your bookmarks!
+        </ol>
+      </ul>
+    </div>
+
+    <div class="section gitHub">
+      <a
+        href="https://github.com/ana-coimbra/to-do-list"
+        class="gitHubIcon"
+        target="_blank"
+        ><i class="fab fa-github"></i
+      ></a>
+      <span>Open-source code</span>
+    </div>
+  </div>
+
+  <div class="section2">
+    <div class="section welcome">
+      <h1>Welcome back! What's on your plans today?</h1>
+      <div class="quote">
+        <p>
+          Don't forget! Sometimes the smallest step in the right direction ends
+          up being the biggest step of your life.
+        </p>
+      </div>
+    </div>
+
+    <form class="addItemForm" action="/" method="post">
+      <input
+        type="text"
+        name="newItem"
+        placeholder="new item"
+        autocomplete="off"
+      />
+      <button class="btnAdd" type="submit" name="list" value="<%= listTitle %>">
+        +
+      </button>
+    </form>
+
+    <% newListItems.forEach((item) => { %>
+    <form class="itemForm" action="/delete" method="post">
+      <div class="section">
+        <input
+          type="checkbox"
+          name="checkbox"
+          value="<%= item._id %>"
+          onChange="this.form.submit()"
+        />
+        <p><%= item.name %></p>
+      </div>
+      <input type="hidden" name="listName" value="<%= listTitle %>" />
+    </form>
+    <% }); %>
+  </div>
+</div>
+
+<%- include("footer") -%>
